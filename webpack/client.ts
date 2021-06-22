@@ -28,7 +28,7 @@ const commonConfigs = merge([
     modules.utils.eslint(),
     modules.configs.target('web'),
     modules.configs.resolve({
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.scss'],
+        extensions: ['.json', '.js', '.jsx', '.ts', '.tsx', '.css', '.scss'],
     }),
 ])
 /**

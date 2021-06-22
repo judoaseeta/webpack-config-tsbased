@@ -24,6 +24,8 @@
         "eslint-plugin-react-hooks": "^4.2.0",
         "eslint-webpack-plugin": "^2.5.4",
         "html-webpack-plugin": "^5.3.1",
+        "husky": "^6.0.0",
+        "lint-staged": "^11.0.0",
         "mini-css-extract-plugin": "^1.6.0",
         "prettier": "^2.3.1",
         "sass": "^1.35.1",
@@ -40,10 +42,20 @@
     },
     "scripts": {
         "start": "cross-env webpack-cli serve  --mode=development --env=dev  --config ./webpack/client.ts",
-        "build": "cross-env NODE_ENV='production' webpack-cli --mode=production --env=prod  --config ./webpack/client.ts"
+        "build": "cross-env NODE_ENV='production' webpack-cli --mode=production --env=prod  --config ./webpack/client.ts",
+        "prepare": "husky install"
     },
     "dependencies": {
         "react": "^17.0.2",
         "react-dom": "^17.0.2"
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx}": [
+            "prettier --write",
+            "eslint --fix"
+        ],
+        "*.{json,css,scss,md}": [
+            "prettier --write"
+        ]
     }
 }

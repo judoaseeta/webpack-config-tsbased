@@ -22,7 +22,7 @@ module.exports = {
     plugins: ['react', '@typescript-eslint'],
     rules: {
         'no-use-before-define': 'off',
-        'import/no-unresolved': [2, { commonjs: true, amd: true }],
+        'import/no-unresolved': ['off'],
         'import/extensions': ['off'],
         'import/no-extraneous-dependencies': ['off'],
         'import/prefer-default-export': ['off'],
