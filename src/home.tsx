@@ -1,4 +1,5 @@
 import React from 'react'
+import SS from './components/ss'
 import './index.scss'
 import styles from './home.module.scss'
 import styles2 from './home.module.css'
@@ -9,6 +10,7 @@ export default function Home() {
             Testing Typescript-based webpack config app.
             <div className={styles2.region}>fewfe</div>
             <div className={styles.example_img} />
+            <SS />
         </div>
     )
 }

@@ -2,10 +2,11 @@
     "compilerOptions": {
         "module": "esnext",
         "target": "esnext",
+        "lib": ["dom", "dom.iterable", "esnext"],
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "baseUrl": "../../",
-        "jsx": "react"
+        "jsx": "preserve"
     },
     "include": [
         "../../"],
