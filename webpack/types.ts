@@ -1,5 +1,5 @@
 import { Configuration } from 'webpack'
-
+import { PluginOptions } from 'mini-css-extract-plugin'
 export type Options =
     | string
     | {
@@ -8,6 +8,12 @@ export type Options =
 
 export interface ConfigModuleParams {
     options?: Options
+}
+export interface StyleSheetConfigModuleParams {
+    cssOptions?: Options
+    styleLoaderOptions?: Options
+    cssExtractLoaderOptions?: Options
+    cssExtractPluginOptions?: PluginOptions
 }
 
 export type Mode = Configuration['mode']

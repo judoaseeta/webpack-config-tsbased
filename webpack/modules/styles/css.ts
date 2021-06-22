@@ -1,10 +1,15 @@
 import { Configuration } from 'webpack'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import { ConfigModuleParams } from '../../types'
+import { StyleSheetConfigModuleParams } from '../../types'
 
-export type CssConfigModuleParams = ConfigModuleParams
+export type CssConfigModuleParams = StyleSheetConfigModuleParams
 
-export default function css({ options }: CssConfigModuleParams = {}): Configuration {
+export default function css({
+    cssOptions,
+    cssExtractLoaderOptions,
+    cssExtractPluginOptions,
+    styleLoaderOptions,
+}: CssConfigModuleParams = {}): Configuration {
     return {
         module: {
             rules: [
@@ -14,21 +19,20 @@ export default function css({ options }: CssConfigModuleParams = {}): Configurat
                         process.env.NODE_ENV === 'production'
                             ? {
                                   loader: MiniCssExtractPlugin.loader,
-                                  options,
+                                  options: cssExtractLoaderOptions,
                               }
-                            : 'style-loader',
+                            : {
+                                  loader: 'style-loader',
+                                  options: styleLoaderOptions,
+                              },
                         {
                             loader: 'css-loader',
-                            options,
+                            options: cssOptions,
                         },
                     ],
                 },
             ],
         },
-        plugins: [
-            new MiniCssExtractPlugin({
-                filename: '[name].css',
-            }),
-        ],
+        plugins: [new MiniCssExtractPlugin(cssExtractPluginOptions)],
     }
 }

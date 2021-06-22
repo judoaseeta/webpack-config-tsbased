@@ -1,14 +1,22 @@
 import { Configuration } from 'webpack'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-import { ConfigModuleParams } from '../../types'
+import { StyleSheetConfigModuleParams, Options } from '../../types'
 
-export type ScssConfigModuleParams = ConfigModuleParams
+export interface ScssConfigModuleParams extends StyleSheetConfigModuleParams {
+    scssOptions?: Options
+}
 /** *
  * SCSS를 스타일시트로 사용하는 경우의 콘픽.
  *
  */
 
-export default function scss({ options }: ScssConfigModuleParams = {}): Configuration {
+export default function scss({
+    cssOptions,
+    cssExtractLoaderOptions,
+    cssExtractPluginOptions,
+    scssOptions,
+    styleLoaderOptions,
+}: ScssConfigModuleParams = {}): Configuration {
     return {
         module: {
             rules: [
@@ -22,25 +30,24 @@ export default function scss({ options }: ScssConfigModuleParams = {}): Configur
                         process.env.NODE_ENV === 'production'
                             ? {
                                   loader: MiniCssExtractPlugin.loader,
-                                  options,
+                                  options: cssExtractLoaderOptions,
                               }
-                            : 'style-loader',
+                            : {
+                                  loader: 'style-loader',
+                                  options: styleLoaderOptions,
+                              },
                         {
                             loader: 'css-loader',
-                            options,
+                            options: cssOptions,
                         },
                         {
                             loader: 'sass-loader',
-                            options,
+                            options: scssOptions,
                         },
                     ],
                 },
             ],
         },
-        plugins: [
-            new MiniCssExtractPlugin({
-                filename: '[name].css',
-            }),
-        ],
+        plugins: [new MiniCssExtractPlugin(cssExtractPluginOptions)],
     }
 }

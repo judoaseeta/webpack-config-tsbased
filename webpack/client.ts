@@ -12,8 +12,13 @@ const root = path.parse(__dirname).dir
 */
 const commonConfigs = merge([
     modules.javascript.typeScriptOnly(),
+    modules.styles.css({
+        cssOptions: {
+            modules: true,
+        },
+    }),
     modules.styles.scss({
-        options: {
+        cssOptions: {
             modules: true,
         },
     }),
