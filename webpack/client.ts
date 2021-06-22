@@ -7,11 +7,14 @@ import { WEBPACK_ARGS, WEBPACK_ENV } from './types'
 import modules from './modules'
 
 const root = path.parse(__dirname).dir
+const build = path.join(root, './build')
+const htmlTemplate = path.join(__dirname, './template.html')
 /*
     공통으로 사용될 웹팩 설정 모듈 정의
 */
 const commonConfigs = merge([
-    modules.javascript.typeScriptOnly(),
+    modules.assets.image(),
+    modules.assets.font(),
     modules.styles.css({
         cssOptions: {
             modules: true,
@@ -34,14 +37,20 @@ const commonConfigs = merge([
  */
 
 const devConfigs = merge([
+    modules.javascript.typeScriptOnly({
+        options: {
+            configFile: path.join(root, './tsconfigs/dev/tsconfig.json'),
+        },
+    }),
     modules.html({
-        template: path.join(__dirname, './index_dev.html'),
+        template: htmlTemplate,
+        title: 'ROYCHOI',
     }),
     modules.configs.entry(path.join(root, './src/index.tsx')),
     modules.utils.devServer({
         historyApiFallback: true,
         inline: true,
-        port: 8000,
+        port: 3000,
         hot: true,
         contentBase: '/dist',
         publicPath: '/',
@@ -51,7 +60,25 @@ const devConfigs = merge([
  *
  * 배포용으로 사용될 웹팩 설정 모듈 정의
  */
-const productionConfigs = merge([modules.configs.entry(path.join(__dirname, '/src/index.tsx')), modules.utils.clean()])
+const productionConfigs = merge([
+    modules.javascript.typeScriptOnly({
+        options: {
+            configFile: path.join(root, './tsconfigs/prod/tsconfig.json'),
+        },
+    }),
+    modules.html({
+        title: 'ROYCHOI',
+        filename: `index.html`,
+        template: htmlTemplate,
+    }),
+    modules.configs.entry(path.join(root, './src/index.tsx')),
+    modules.configs.output({
+        path: build,
+        filename: '[name].prod.js',
+    }),
+    modules.styles.optimize(),
+    modules.utils.clean(),
+])
 
 /**
  *

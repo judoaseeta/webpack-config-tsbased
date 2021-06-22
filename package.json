@@ -1,5 +1,6 @@
 {
     "devDependencies": {
+        "@types/css-minimizer-webpack-plugin": "^3.0.1",
         "@types/mini-css-extract-plugin": "^1.4.3",
         "@types/node": "^15.12.4",
         "@types/react": "^17.0.11",
@@ -12,6 +13,7 @@
         "babel-loader": "^8.2.2",
         "cross-env": "^7.0.3",
         "css-loader": "^5.2.6",
+        "css-minimizer-webpack-plugin": "^3.0.1",
         "eslint": "^7.29.0",
         "eslint-config-airbnb": "^18.2.1",
         "eslint-config-prettier": "^8.3.0",
@@ -37,10 +39,8 @@
         "webpack-merge": "^5.8.0"
     },
     "scripts": {
-        "lint": "node_modules/.bin/eslint ./webpack/**/*.{ts}",
-        "lint:fix": "node_modules/.bin/eslint --fix ./webpack/**/*.{ts}",
-        "prettier": "prettier --write --config ./.prettierrc.js ./webpack/**/*.{ts,tsx}",
-        "start": "cross-env TS_NODE_PROJECT='./typescript/tsconfig-for-webpack.json' webpack-cli serve  --mode=development --env=dev  --config ./webpack/client.ts"
+        "start": "cross-env webpack-cli serve  --mode=development --env=dev  --config ./webpack/client.ts",
+        "build": "cross-env NODE_ENV='production' webpack-cli --mode=production --env=prod  --config ./webpack/client.ts"
     },
     "dependencies": {
         "react": "^17.0.2",
