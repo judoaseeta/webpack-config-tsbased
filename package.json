@@ -1,6 +1,7 @@
 {
     "devDependencies": {
         "@types/css-minimizer-webpack-plugin": "^3.0.1",
+        "@types/dotenv-webpack": "^7.0.3",
         "@types/mini-css-extract-plugin": "^1.4.3",
         "@types/node": "^15.12.4",
         "@types/react": "^17.0.11",
@@ -14,6 +15,7 @@
         "cross-env": "^7.0.3",
         "css-loader": "^5.2.6",
         "css-minimizer-webpack-plugin": "^3.0.1",
+        "dotenv-webpack": "^7.0.3",
         "eslint": "^7.29.0",
         "eslint-config-airbnb": "^18.2.1",
         "eslint-config-prettier": "^8.3.0",
