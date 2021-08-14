@@ -1,0 +1,9 @@
+{
+     "*.{js,jsx,ts,tsx}": [
+            "yarn --cwd prettier",
+            "yarn --cwd lint",
+        ],
+    "*.{json,css,scss,md}": [
+            "yarn --cwd prettier",
+    ]
+}
