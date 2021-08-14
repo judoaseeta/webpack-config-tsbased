@@ -63,7 +63,7 @@ const devConfigs = merge([
     }),
     modules.html({
         template: htmlTemplate,
-        title: 'NEXTLAB LOGVIEWER',
+        title: 'WEBPACK_TYPESCRIPT_TEMPLATE',
     }),
     modules.configs.entry(path.join(root, './src/index.tsx')),
     modules.utils.devServer({
@@ -75,7 +75,7 @@ const devConfigs = merge([
         noInfo: true,
     }),
     modules.configs.output({
-        publicPath: '',
+        publicPath: '/',
     }),
     modules.utils.dotEnv(path.join(root, '/.env')),
 ])
@@ -108,7 +108,7 @@ const productionConfigs = merge([
     modules.configs.output({
         path: `${process.cwd()}/build`,
         filename: '[name].[chunkhash].prod.js',
-        publicPath: ``,
+        publicPath: '/',
     }),
     modules.styles.optimize(),
     modules.utils.clean(),

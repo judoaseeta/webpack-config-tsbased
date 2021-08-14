@@ -1,9 +1,9 @@
 {
      "*.{js,jsx,ts,tsx}": [
-            "yarn --cwd prettier",
-            "yarn --cwd lint",
+            "yarn eslint",
+            "yarn prettier",
         ],
     "*.{json,css,scss,md}": [
-            "yarn --cwd prettier",
+            "yarn prettier",
     ]
 }
