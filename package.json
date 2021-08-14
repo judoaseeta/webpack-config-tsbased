@@ -48,7 +48,8 @@
         "build": "cross-env NODE_ENV='production' webpack-cli --mode=production --env=prod  --config ./webpack/client.ts",
         "prepare": "husky install",
         "eslint": "eslint --fix",
-        "prettier": "prettier --write"
+        "prettier": "prettier --write",
+        "serve": "npx serve -s build"
     },
     "dependencies": {
         "react": "^17.0.2",

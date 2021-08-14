@@ -14,7 +14,9 @@ export default function Home(): React.ReactElement {
             <div className={styles.example_img} />
             <SS />
             <Switch>
-                <Route path="/param/:id" component={RouteWithParam} />
+                <Route path="/param/:id">
+                    <RouteWithParam name="roy" />
+                </Route>
             </Switch>
         </div>
     )
