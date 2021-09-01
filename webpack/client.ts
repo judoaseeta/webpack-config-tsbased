@@ -65,14 +65,14 @@ const devConfigs = merge([
         template: htmlTemplate,
         title: 'WEBPACK_TYPESCRIPT_TEMPLATE',
     }),
-    modules.configs.entry(path.join(root, './src/index.tsx')),
+    modules.configs.entry(path.join(root, './src/client.tsx')),
     modules.utils.devServer({
         historyApiFallback: true,
         port: 3000,
         contentBase: path.join(root, './public'),
         publicPath: '/',
         inline: true,
-        noInfo: true,
+        hot: true,
     }),
     modules.configs.output({
         publicPath: '/',
@@ -104,8 +104,9 @@ const productionConfigs = merge([
         filename: `index.html`,
         template: htmlTemplate,
     }),
-    modules.configs.entry(path.join(root, './src/index.tsx')),
+    modules.configs.entry(path.join(root, './src/client.tsx')),
     modules.configs.output({
+        clean: true,
         path: `${process.cwd()}/build`,
         filename: '[name].[chunkhash].prod.js',
         publicPath: '/',
